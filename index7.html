@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaOM Group Projects</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            animation: gradientShift 10s ease infinite;
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Dot pattern overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="5" fill="rgba(255, 255, 255, 0.5)"/><circle cx="90" cy="90" r="5" fill="rgba(255, 255, 255, 0.5)"/><circle cx="50" cy="30" r="5" fill="rgba(255, 255, 255, 0.5)"/><circle cx="70" cy="70" r="5" fill="rgba(255, 255, 255, 0.5)"/><circle cx="30" cy="80" r="5" fill="rgba(255, 255, 255, 0.5)"/></svg>');
+            opacity: 0.3; /* Adjust for transparency */
+            pointer-events: none; /* Allow interaction with elements underneath */
+        }
+
+        /* Top left corner text */
+        .corner-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 1; /* Bring the container above the background */
+        }
+        h1 {
+            text-align: center;
+            color: red;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 15px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        button {
+            padding: 12px;
+            font-size: 1.2rem;
+            background-color: #66a6ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #4d8aff;
+            transform: scale(1.05);
+        }
+        label {
+            font-weight: bold;
+            color: #444;
+        }
+        .links-container {
+            display: none;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .links-container a {
+            display: block;
+            padding: 10px;
+            background-color: #66a6ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .links-container a:hover {
+            background-color: #4d8aff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="corner-label">CSE F - MAOM</div>
+    <div class="container">
+        <h1>Submit Your Group Project Links</h1>
+        <form id="linksForm">
+            <!-- 11 input fields for links -->
+            <div>
+                <label for="link1">Group 1</label>
+                <input type="text" id="link1" name="links[]" placeholder="Enter Group 1 link" required>
+            </div>
+            <div>
+                <label for="link2">Group 2</label>
+                <input type="text" id="link2" name="links[]" placeholder="Enter Group 2 link" required>
+            </div>
+            <div>
+                <label for="link3">Group 3</label>
+                <input type="text" id="link3" name="links[]" placeholder="Enter Group 3 link" required>
+            </div>
+            <div>
+                <label for="link4">Group 4</label>
+                <input type="text" id="link4" name="links[]" placeholder="Enter Group 4 link" required>
+            </div>
+            <div>
+                <label for="link5">Group 5</label>
+                <input type="text" id="link5" name="links[]" placeholder="Enter Group 5 link" required>
+            </div>
+            <div>
+                <label for="link6">Group 6</label>
+                <input type="text" id="link6" name="links[]" placeholder="Enter Group 6 link" required>
+            </div>
+            <div>
+                <label for="link7">Group 7</label>
+                <input type="text" id="link7" name="links[]" placeholder="Enter Group 7 link" required>
+            </div>
+            <div>
+                <label for="link8">Group 8</label>
+                <input type="text" id="link8" name="links[]" placeholder="Enter Group 8 link" required>
+            </div>
+            <div>
+                <label for="link9">Group 9</label>
+                <input type="text" id="link9" name="links[]" placeholder="Enter Group 9 link" required>
+            </div>
+            <div>
+                <label for="link10">Group 10</label>
+                <input type="text" id="link10" name="links[]" placeholder="Enter Group 10 link" required>
+            </div>
+            <div>
+                <label for="link11">Group 11</label>
+                <input type="text" id="link11" name="links[]" placeholder="Enter Group 11 link" required>
+            </div>
+
+            <button type="submit">Submit Links</button>
+        </form>
+
+        <!-- Display the submitted links -->
+        <div class="links-container" id="linksContainer">
+            <h2>Your Submitted Links:</h2>
+            <div id="submittedLinks"></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("linksForm").onsubmit = function(event) {
+            event.preventDefault(); // Prevent default form submission
+            
+            const linksContainer = document.getElementById("linksContainer");
+            const submittedLinks = document.getElementById("submittedLinks");
+            submittedLinks.innerHTML = ""; // Clear previous links
+            
+            // Get links from form
+            const links = Array.from(document.querySelectorAll('input[name="links[]"]')).map(input => input.value);
+            links.forEach((link, index) => {
+                // Create a new link element
+                const linkElement = document.createElement("a");
+                linkElement.href = link;
+                linkElement.target = "_blank"; // Open link in new tab
+                linkElement.textContent = `Group ${index + 1}: ${link}`; // Display group number
+                submittedLinks.appendChild(linkElement);
+            });
+            
+            linksContainer.style.display = "block"; // Show links container
+            this.reset(); // Reset the form inputs
+        };
+    </script>
+</body>
+</html>
