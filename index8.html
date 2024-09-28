@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="color: red; text-shadow: 0 0 10px #66a6ff;">CSE F - MAOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .container {
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+        h1 {
+            text-align: center;
+            color: #444;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 15px;
+        }
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #66a6ff;
+            outline: none;
+        }
+        button {
+            padding: 12px;
+            font-size: 1.2rem;
+            background-color: #66a6ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #4d8aff;
+            transform: scale(1.05);
+        }
+        .links-container {
+            display: none;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .links-container a {
+            display: block;
+            padding: 10px;
+            background-color: #66a6ff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .links-container a:hover {
+            background-color: #4d8aff;
+            transform: scale(1.05);
+        }
+        #adminPanel {
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Your Group Project Links</h1>
+
+        <div id="adminPanel">
+            <form id="linksForm">
+                <div>
+                    <label for="link1">Group 1</label>
+                    <input type="text" id="link1" placeholder="Enter link for Group 1" required>
+                </div>
+                <div>
+                    <label for="link2">Group 2</label>
+                    <input type="text" id="link2" placeholder="Enter link for Group 2" required>
+                </div>
+                <div>
+                    <label for="link3">Group 3</label>
+                    <input type="text" id="link3" placeholder="Enter link for Group 3" required>
+                </div>
+                <div>
+                    <label for="link4">Group 4</label>
+                    <input type="text" id="link4" placeholder="Enter link for Group 4" required>
+                </div>
+                <div>
+                    <label for="link5">Group 5</label>
+                    <input type="text" id="link5" placeholder="Enter link for Group 5" required>
+                </div>
+                <div>
+                    <label for="link6">Group 6</label>
+                    <input type="text" id="link6" placeholder="Enter link for Group 6" required>
+                </div>
+                <div>
+                    <label for="link7">Group 7</label>
+                    <input type="text" id="link7" placeholder="Enter link for Group 7" required>
+                </div>
+                <div>
+                    <label for="link8">Group 8</label>
+                    <input type="text" id="link8" placeholder="Enter link for Group 8" required>
+                </div>
+                <div>
+                    <label for="link9">Group 9</label>
+                    <input type="text" id="link9" placeholder="Enter link for Group 9" required>
+                </div>
+                <div>
+                    <label for="link10">Group 10</label>
+                    <input type="text" id="link10" placeholder="Enter link for Group 10" required>
+                </div>
+                <div>
+                    <label for="link11">Group 11</label>
+                    <input type="text" id="link11" placeholder="Enter link for Group 11" required>
+                </div>
+
+                <button type="submit">Submit Links</button>
+            </form>
+        </div>
+
+        <div class="links-container" id="linksContainer">
+            <h2>Your Submitted Links:</h2>
+            <div id="submittedLinks"></div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('linksForm');
+        const linksContainer = document.getElementById('linksContainer');
+        const submittedLinks = document.getElementById('submittedLinks');
+        const adminPanel = document.getElementById('adminPanel');
+
+        // Function to check if the user is the owner
+        function checkOwner() {
+            const password = prompt("Enter the owner password to access the input form:");
+            if (password === "shnm25") { // Change this to your actual password
+                adminPanel.style.display = 'block';
+                loadLinks(); // Load links if the owner accesses
+            } else {
+                displayLinks(); // Only show links for others
+            }
+        }
+
+        // Check if links already exist in localStorage
+        function loadLinks() {
+            if (localStorage.getItem('links')) {
+                displayLinks();
+            }
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            // Collect links from input fields
+            const links = [];
+            for (let i = 1; i <= 11; i++) {
+                const link = document.getElementById(`link${i}`).value;
+                if (link) {
+                    links.push(link);
+                }
+            }
+
+            // Store links in localStorage
+            localStorage.setItem('links', JSON.stringify(links));
+            displayLinks();
+
+            // Hide the form after submission
+            adminPanel.style.display = 'none';
+        });
+
+        function displayLinks() {
+            const links = JSON.parse(localStorage.getItem('links'));
+            submittedLinks.innerHTML = '';
+
+            links.forEach(function (link) {
+                const linkElement = document.createElement('a');
+                linkElement.href = link;
+                linkElement.target = '_blank'; // Open in new tab
+                linkElement.textContent = link + ' 🔗'; // Add link emoji
+                submittedLinks.appendChild(linkElement);
+            });
+
+            // Show the links container
+            linksContainer.style.display = 'block';
+        }
+
+        checkOwner(); // Prompt for owner password on page load
+    </script>
+</body>
+</html>
